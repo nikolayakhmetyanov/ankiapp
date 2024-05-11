@@ -1,6 +1,8 @@
 'use client';
+
 import { useEffect, useState } from 'react';
 import { debounce } from 'next/dist/server/utils';
+import { string } from 'prop-types';
 
 function getBreakpoint(width) {
     if (width >= 576 && width < 768) {
@@ -22,23 +24,30 @@ function getBreakpoint(width) {
 }
 
 const useWindowSize = () => {
-    const [windowSize, setWindowSize] = useState({
-        width: window.innerWidth,
-        height: window.innerHeight,
-        breakpoint: getBreakpoint(window.innerWidth),
-    });
+    const isClient = typeof window === 'object';
+
+    function getSize() {
+        return isClient
+            ? { width: window.innerWidth, height: window.innerHeight, breakpoint: getBreakpoint(window.innerWidth) }
+            : { width: undefined, height: undefined, breakpoint: 'xs' };
+    }
+    const [windowSize, setWindowSize] = useState(getSize);
 
     useEffect(() => {
+        if (!isClient) {
+            return false;
+        }
+
         const handleResize = debounce(() => {
             setWindowSize({
-                width: window.innerWidth,
-                height: window.innerHeight,
-                breakpoint: getBreakpoint(window.innerWidth),
+                width: window?.innerWidth,
+                height: window?.innerHeight,
+                breakpoint: getBreakpoint(window?.innerWidth),
             });
         }, 200);
 
         window.addEventListener('resize', handleResize);
-        return () => window.removeEventListener('resize', handleResize);
+        return () => window?.removeEventListener('resize', handleResize);
     }, []);
 
     return windowSize;
