@@ -1,6 +1,11 @@
 @import '../../node_modules/normalize.css';
 @import 'mixins';
 
+:root {
+    --accent-color: #fdfaba;
+    --danger-color: #fc1c79;
+}
+
 body {
     min-height: 100vh;
     font-size: 14px;

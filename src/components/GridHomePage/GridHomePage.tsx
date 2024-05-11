@@ -2,7 +2,7 @@
 
 import classNames from 'classnames';
 import { useWindowSize } from '@/hooks/useWindowSize';
-import styles from '@/styles/pages/HomePage.module.scss';
+import styles from './GridHomePage.module.scss';
 import { CreateCard } from '@/components/CreateCard/CreateCard';
 import PreviewCard from '@/components/PreviewCard/PreviewCard';
 
