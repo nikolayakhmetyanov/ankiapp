@@ -1,0 +1,23 @@
+@import '@/styles/mixins';
+
+:root {
+    --accent-color: #fff987;
+    --danger-color: #fc1c79;
+    --border-color: #404040;
+    --background-color: #0b0232;
+}
+
+body {
+    min-height: 100vh;
+    font-size: 14px;
+    color: white;
+    line-height: 1.6;
+    background-color: var(--background-color);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+a {
+    color: var(--accent-color);
+    text-decoration: none;
+}

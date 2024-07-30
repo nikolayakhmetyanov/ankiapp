@@ -1,0 +1,75 @@
+.registrationForm {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 360px;
+    padding: 32px 24px;
+    border: 1px solid #404040;
+    border-radius: 24px;
+}
+
+.wrapFormItems {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 16px;
+}
+
+.title {
+    margin-bottom: 16px;
+    text-align: center;
+    color: white;
+    font-weight: 500;
+    font-size: 32px;
+    font-family: var(--playfair), sans-serif;
+}
+
+.subTitle {
+    margin-top: 0;
+    margin-bottom: 32px;
+    text-align: center;
+}
+
+.footerText {
+    margin-bottom: 32px;
+    text-align: center;
+}
+
+.authServicesSeparator {
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
+
+.authServicesSeparator span {
+    position: relative;
+    margin-bottom: 24px;
+    padding: 0 16px;
+    background-color: var(--background-color);
+    z-index: 10;
+}
+
+.authServicesSeparator:before {
+    content: "";
+    position: absolute;
+    top: 10px;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background-color: #404040;
+}
+
+.serviceLinkItem {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    height: 60px;
+    padding: 0 24px;
+    border-radius: 16px;
+    border: 1px solid var(--border-color);
+}
+
+.serviceLinkItem span {
+    color: #ffffff;
+}

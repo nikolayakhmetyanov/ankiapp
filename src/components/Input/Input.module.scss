@@ -1,0 +1,48 @@
+.wrapInput {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    color: white;
+    font-size: 16px;
+}
+
+.label {
+    position: relative;
+    display: flex;
+}
+
+.input {
+    width: 100%;
+    height: 60px;
+    padding: 0 24px;
+    font-size: 16px;
+    color: #ffffff;
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    background-color: transparent;
+}
+
+.input:focus,
+.input.filled {
+    border-color: var(--accent-color);
+    outline: none;
+}
+
+.input:focus ~ div,
+.input.filled ~ div {
+    transform: translateY(-30px);
+    transition: 0.3s;
+}
+
+.fakeLabel {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    top: calc(50% - 10px);
+    left: 12px;
+    height: 20px;
+    padding: 0 12px;
+    line-height: 1;
+    background-color: var(--background-color);
+    transition: 0.3s;
+}

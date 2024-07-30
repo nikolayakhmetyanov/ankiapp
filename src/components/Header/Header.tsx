@@ -5,7 +5,6 @@ import { BritishFlagIcon } from '@/components/Icon/BritishFlagIcon';
 import { GermanyFlagIcon } from '@/components/Icon/GermanyFlagIcon';
 import { SettingIcon } from '@/components/Icon/SettingIcon';
 import Link from 'next/link';
-import { playfair } from '@/fonts/fonts';
 
 const Header = () => {
     return (
@@ -14,7 +13,7 @@ const Header = () => {
                 <div className={styles.innerWrap}>
                     <div className={styles.logo}>
                         <Image src="/logo.jpg" alt="WordWise" width={640} height={640} />
-                        <span className={playfair.className}>WordWise</span>
+                        <span>WordWise</span>
                     </div>
                     <nav className={styles.langs}>
                         <button className={classNames(styles.langItem, styles.langItemActive)}>

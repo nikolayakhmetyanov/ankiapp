@@ -6,7 +6,6 @@ import { playfair } from '@/fonts/fonts';
 import { Button } from '@/components/Button/Button';
 import { useState } from 'react';
 import { CheckBoldIcon } from '@/components/Icon/CheckBoldIcon';
-import { CloseIcon } from '@/components/Icon/CloseIcon';
 import { CloseBoldIcon } from '@/components/Icon/CloseBoldIcon';
 
 const cards = [
@@ -56,7 +55,7 @@ const TinderSlider = () => {
         setCurrentCardIndex((prevState) => prevState + 1);
     };
     const handleFlip = () => {
-        setFlipped(prevState => !prevState);
+        setFlipped((prevState) => !prevState);
     };
 
     return (

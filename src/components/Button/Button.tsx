@@ -1,11 +1,16 @@
+import { ButtonHTMLAttributes, FC } from 'react';
 import classNames from 'classnames';
 import styles from './Button.module.scss';
 
-const Button = ({ type, className, children, ...props }) => {
+interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+    variant?: 'ghost' | 'primary';
+}
+
+const Button: FC<ButtonProps> = ({ children, className, variant, ...props }) => {
     return (
         <button
             className={classNames(styles.button, className, {
-                [styles.ghost]: type === 'ghost',
+                [styles.ghost]: variant === 'ghost',
             })}
             {...props}
         >

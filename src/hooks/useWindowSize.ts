@@ -2,9 +2,8 @@
 
 import { useEffect, useState } from 'react';
 import { debounce } from 'next/dist/server/utils';
-import { string } from 'prop-types';
 
-function getBreakpoint(width) {
+function getBreakpoint(width: number) {
     if (width >= 576 && width < 768) {
         return 'sm';
     }
@@ -25,29 +24,27 @@ function getBreakpoint(width) {
 
 const useWindowSize = () => {
     const isClient = typeof window === 'object';
+    const DEFAULT_BREAKPOINT = 'xs';
 
-    function getSize() {
-        return isClient
-            ? { width: window.innerWidth, height: window.innerHeight, breakpoint: getBreakpoint(window.innerWidth) }
-            : { width: undefined, height: undefined, breakpoint: 'xs' };
-    }
-    const [windowSize, setWindowSize] = useState(getSize);
+    const getWindowSizeObject = (): { width: number | undefined; height: number | undefined; breakpoint: string } => {
+        const width = isClient ? window.innerWidth : undefined;
+        const height = isClient ? window.innerHeight : undefined;
+        const breakpoint = isClient ? getBreakpoint(window.innerWidth) : DEFAULT_BREAKPOINT;
+        return { width, height, breakpoint };
+    };
+
+    const [windowSize, setWindowSize] = useState(getWindowSizeObject);
+
+    const handleResize = debounce(() => {
+        setWindowSize(getWindowSizeObject());
+    }, 200);
 
     useEffect(() => {
         if (!isClient) {
-            return false;
+            return;
         }
-
-        const handleResize = debounce(() => {
-            setWindowSize({
-                width: window?.innerWidth,
-                height: window?.innerHeight,
-                breakpoint: getBreakpoint(window?.innerWidth),
-            });
-        }, 200);
-
         window.addEventListener('resize', handleResize);
-        return () => window?.removeEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
     }, []);
 
     return windowSize;

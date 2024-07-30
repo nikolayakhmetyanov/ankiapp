@@ -1,15 +1,22 @@
 import type { Metadata } from 'next';
 import { ReactNode } from 'react';
-import { poppins } from '@/fonts/fonts';
-import '../styles/layout.scss';
-import { Providers } from '@/app/Providers';
-import Header from '@/components/Header/Header';
 import classNames from 'classnames';
-import Footer from '@/components/Footer/Footer';
+import '@/app/tailwind.css';
+import { Providers } from '@/app/Providers';
 
 export const metadata: Metadata = {
     title: 'WordWise',
 };
+
+import { Playfair_Display, Poppins } from 'next/font/google';
+
+const poppins = Poppins({
+    weight: ['400', '500', '700'],
+    subsets: ['latin'],
+    variable: '--poppins',
+});
+
+const playfair = Playfair_Display({ weight: ['400', '500'], subsets: ['latin'], variable: '--playfair' });
 
 export default function RootLayout({
     children,
@@ -17,14 +24,10 @@ export default function RootLayout({
     children: ReactNode;
 }>) {
     return (
-        <Providers>
-            <html lang="en">
-                <body className={classNames(poppins.className)}>
-                    <Header />
-                    <main>{children}</main>
-                    <Footer />
-                </body>
-            </html>
-        </Providers>
+        <html lang="ru" className={`${poppins.variable} ${playfair.variable} dark text-foreground bg-background`}>
+            <body className={classNames(poppins.className)}>
+                <Providers>{children}</Providers>
+            </body>
+        </html>
     );
 }
